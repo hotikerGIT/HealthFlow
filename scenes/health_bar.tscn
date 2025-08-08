@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ldus8n7f5c8"]
+
+[ext_resource type="PackedScene" uid="uid://lt37nvy8i8pg" path="res://scenes/bar.tscn" id="1_1bvlm"]
+[ext_resource type="Texture2D" uid="uid://0bcc76a45ona" path="res://assets/sprites/bars/health.png" id="2_6opq1"]
+[ext_resource type="Texture2D" uid="uid://b8h4mcettblx7" path="res://assets/sprites/bars/healthbar.png" id="3_tujlf"]
+
+[node name="HealthBar" instance=ExtResource("1_1bvlm")]
+starting_position = Vector2(68, 16)
+
+[node name="Scale" parent="." index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="ScaleTexture" parent="Scale" index="0"]
+offset_right = 256.0
+offset_bottom = 64.0
+texture = ExtResource("3_tujlf")
+
+[node name="FillContainer" parent="." index="1"]
+clip_children = 1
+offset_left = 60.0
+offset_top = 16.0
+offset_right = -912.0
+offset_bottom = -600.0
+
+[node name="Container" parent="FillContainer" index="0"]
+position = Vector2(68, 16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_6opq1")

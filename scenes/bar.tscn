@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://lt37nvy8i8pg"]
+
+[ext_resource type="Script" uid="uid://dx8q4lsuwsiq7" path="res://scenes/bar.gd" id="1_qyha7"]
+
+[node name="Bar" type="CanvasLayer"]
+script = ExtResource("1_qyha7")
+
+[node name="Scale" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchor_right = 0.042
+anchor_bottom = 0.031
+offset_right = -48.384
+offset_bottom = -20.088
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScaleTexture" type="TextureRect" parent="Scale"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FillContainer" type="TextureRect" parent="."]
+z_index = 5
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Sprite2D" parent="FillContainer"]
