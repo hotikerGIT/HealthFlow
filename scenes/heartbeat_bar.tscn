@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckhr1rbmagnkx"]
+
+[ext_resource type="PackedScene" uid="uid://lt37nvy8i8pg" path="res://scenes/bar.tscn" id="1_nfvo6"]
+[ext_resource type="Script" uid="uid://dl5k268dr01gg" path="res://scenes/heart_beat_bar.gd" id="2_qvcsg"]
+[ext_resource type="Texture2D" uid="uid://dp0fn6h0mphcr" path="res://assets/sprites/bars/heartbeat bar/heartbeat bar.png" id="2_v6w7s"]
+[ext_resource type="Texture2D" uid="uid://brsnsjvlj8etl" path="res://assets/sprites/bars/heartbeat bar/heartbeat.png" id="3_r0cfj"]
+
+[node name="HeartbeatBar" instance=ExtResource("1_nfvo6")]
+script = ExtResource("2_qvcsg")
+
+[node name="Scale" parent="." index="0"]
+offset_left = 3.0
+offset_right = -45.384
+
+[node name="ScaleTexture" parent="Scale" index="0"]
+offset_left = 1.0
+offset_right = 65.0
+offset_bottom = 16.0
+scale = Vector2(4, 4)
+texture = ExtResource("2_v6w7s")
+
+[node name="FillContainer" parent="." index="1"]
+offset_left = 56.0
+offset_top = 48.0
+offset_right = -912.0
+offset_bottom = -592.0
+
+[node name="Content" parent="FillContainer" index="0"]
+texture = ExtResource("3_r0cfj")
+vframes = 2
+region_enabled = true
+region_rect = Rect2(13, 5, 46, 5)
+
+[connection signal="state_change" from="." to="." method="_on_state_change"]

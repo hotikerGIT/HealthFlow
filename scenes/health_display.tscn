@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://bktla1f8llt1o"]
+[gd_scene load_steps=3 format=3 uid="uid://bktla1f8llt1o"]
+
+[ext_resource type="PackedScene" uid="uid://ckhr1rbmagnkx" path="res://scenes/heartbeat_bar.tscn" id="1_esrnm"]
+[ext_resource type="PackedScene" uid="uid://d2ldus8n7f5c8" path="res://scenes/health_bar.tscn" id="2_q3enr"]
 
 [node name="HealthDisplay" type="Node2D"]
+
+[node name="HeartbeatBar" parent="." instance=ExtResource("1_esrnm")]
+
+[node name="HealthBar" parent="." instance=ExtResource("2_q3enr")]

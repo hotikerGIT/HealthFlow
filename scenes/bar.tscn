@@ -34,4 +34,6 @@ offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Container" type="Sprite2D" parent="FillContainer"]
+[node name="Content" type="Sprite2D" parent="FillContainer"]
+scale = Vector2(4, 4)
+centered = false

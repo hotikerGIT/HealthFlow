@@ -1,12 +1,19 @@
 extends CanvasLayer
 
-@export var fill_ratio : float = 1
-@export var starting_position : Vector2
+class_name Bar
 
-@onready var content_sprite : Sprite2D = $FillContainer/Container
+# ratio of filling
+@export var fill_ratio : float = 1
+
+@onready var content_sprite : Sprite2D = $FillContainer/Content
+
+var starting_position : Vector2
+var content_size : Vector2
 
 
 func _ready():
+	starting_position = content_sprite.position
+	content_size = content_sprite.get_rect().size * content_sprite.scale
 	update_content()
 	
 	
@@ -20,8 +27,8 @@ func get_ratio():
 	
 	
 func update_content():
-	var content_size = content_sprite.texture.get_size()
-	var new_x_position : float = -content_size.x * (1 - fill_ratio)
-	var new_position : Vector2 = Vector2(starting_position.x + new_x_position, starting_position.y)
+	# Changes the content sprite depending on fill ratio
+	var offset : float = -content_size.x * (1 - fill_ratio)
+	var new_position : Vector2 = starting_position + Vector2(offset, 0)
 
 	content_sprite.position = new_position
