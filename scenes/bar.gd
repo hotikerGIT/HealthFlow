@@ -6,6 +6,7 @@ class_name Bar
 @export var fill_ratio : float = 1
 
 @onready var content_sprite : Sprite2D = $FillContainer/Content
+@onready var display : Label = $Display
 
 var starting_position : Vector2
 var content_size : Vector2
@@ -32,3 +33,8 @@ func update_content():
 	var new_position : Vector2 = starting_position + Vector2(offset, 0)
 
 	content_sprite.position = new_position
+
+
+func update_display(new_current_value : int, new_max_value : int):
+	display.text = str(new_current_value) + '/' + str(new_max_value)
+	

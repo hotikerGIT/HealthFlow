@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://j7hs8ctk0vpl"]
+
+[ext_resource type="PackedScene" uid="uid://bktla1f8llt1o" path="res://scenes/health_display.tscn" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://t8eqveccfvv" path="res://scenes/player.gd" id="1_g2els"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_g2els")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="HealthDisplay" parent="." instance=ExtResource("1_3vyb7")]

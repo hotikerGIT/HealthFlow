@@ -31,3 +31,10 @@ region_rect = Rect2(15, 5, 35, 6)
 
 [node name="Hollow" parent="FillContainer" index="1"]
 position = Vector2(50, 12)
+
+[node name="Display" parent="." index="2"]
+z_index = 50
+offset_left = 285.0
+offset_top = 20.0
+offset_right = 325.0
+offset_bottom = 43.0
