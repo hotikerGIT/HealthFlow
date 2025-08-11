@@ -1,9 +1,125 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckhr1rbmagnkx"]
+[gd_scene load_steps=9 format=3 uid="uid://ckhr1rbmagnkx"]
 
 [ext_resource type="PackedScene" uid="uid://lt37nvy8i8pg" path="res://scenes/bar.tscn" id="1_nfvo6"]
-[ext_resource type="Script" uid="uid://dl5k268dr01gg" path="res://scenes/heart_beat_bar.gd" id="2_qvcsg"]
+[ext_resource type="Script" uid="uid://dl5k268dr01gg" path="res://scenes/heartbeat_bar.gd" id="2_qvcsg"]
 [ext_resource type="Texture2D" uid="uid://dp0fn6h0mphcr" path="res://assets/sprites/bars/heartbeat bar/heartbeat bar.png" id="2_v6w7s"]
 [ext_resource type="Texture2D" uid="uid://brsnsjvlj8etl" path="res://assets/sprites/bars/heartbeat bar/heartbeat.png" id="3_r0cfj"]
+
+[sub_resource type="Animation" id="Animation_5qrlx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FillContainer/Content:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FillContainer/Content:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s0wyh"]
+resource_name = "cooldown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FillContainer/Content:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FillContainer/Content:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(-184, -2)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_state_change"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2mhqg"]
+resource_name = "cooldown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FillContainer/Content:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-184, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_state_change"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FillContainer/Content:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s0wyh"]
+_data = {
+&"RESET": SubResource("Animation_5qrlx"),
+&"cooldown": SubResource("Animation_s0wyh"),
+&"gain": SubResource("Animation_2mhqg")
+}
 
 [node name="HeartbeatBar" instance=ExtResource("1_nfvo6")]
 script = ExtResource("2_qvcsg")
@@ -31,4 +147,7 @@ vframes = 2
 region_enabled = true
 region_rect = Rect2(13, 5, 46, 5)
 
-[connection signal="state_change" from="." to="." method="_on_state_change"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_s0wyh")
+}
