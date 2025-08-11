@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://lt37nvy8i8pg"]
+[gd_scene load_steps=3 format=3 uid="uid://lt37nvy8i8pg"]
 
 [ext_resource type="Script" uid="uid://dx8q4lsuwsiq7" path="res://scenes/bar.gd" id="1_qyha7"]
+[ext_resource type="Texture2D" uid="uid://hejjaxlbxk4h" path="res://assets/sprites/bars/hollow.png" id="2_bwlfd"]
 
 [node name="Bar" type="CanvasLayer"]
 script = ExtResource("1_qyha7")
@@ -37,3 +38,10 @@ grow_vertical = 2
 [node name="Content" type="Sprite2D" parent="FillContainer"]
 scale = Vector2(4, 4)
 centered = false
+
+[node name="Hollow" type="Sprite2D" parent="FillContainer"]
+z_index = -5
+scale = Vector2(4, 4)
+texture = ExtResource("2_bwlfd")
+region_enabled = true
+region_rect = Rect2(15, 5, 45, 6)

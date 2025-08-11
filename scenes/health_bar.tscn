@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://lt37nvy8i8pg" path="res://scenes/bar.tscn" id="1_1bvlm"]
 [ext_resource type="Script" uid="uid://cvhim3aoufj1q" path="res://scenes/health_bar.gd" id="2_tujlf"]
-[ext_resource type="Texture2D" uid="uid://clxfj6inafo10" path="res://assets/sprites/bars/health bar/healthbar v2.png" id="3_tujlf"]
+[ext_resource type="Texture2D" uid="uid://bnwmjbd2kmvhe" path="res://assets/sprites/bars/health bar/healthbar v3.png" id="3_tujlf"]
 [ext_resource type="Texture2D" uid="uid://cc4uxnugwkuhh" path="res://assets/sprites/bars/health bar/health v2.png" id="4_tujlf"]
 
 [node name="HealthBar" instance=ExtResource("1_1bvlm")]
@@ -16,6 +16,7 @@ offset_bottom = -4.088
 metadata/_edit_use_anchors_ = true
 
 [node name="ScaleTexture" parent="Scale" index="0"]
+z_index = 2
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 240.0
@@ -33,3 +34,6 @@ offset_bottom = -604.0
 texture = ExtResource("4_tujlf")
 region_enabled = true
 region_rect = Rect2(15, 5, 45, 6)
+
+[node name="Hollow" parent="FillContainer" index="1"]
+position = Vector2(90, 12)
