@@ -3,10 +3,10 @@ extends Bar
 
 const STATES : Array[String] = ['gain', 'cooldown']
 
-# Timing is measured in seconds of animation playing in animation_player
-var timing : Dictionary[String, float] = {'gain': 1, 'cooldown': 1}
-# Speed is measured as a coefficient of speed in animation_player for each animation
-var speeds : Dictionary[String, float] = {'gain': 1, 'cooldown': 1}
+# Speed is measured in bpm, then when the animation needs to change the speed,
+# bpm is converted into a speed coefficient
+var bpms : Dictionary[String, float] = {'gain': 150, 'cooldown': 100}
+var speeds : Dictionary[String, float]
 
 # GAIN - character has the hbp, COOLDOWN - character wait to get hbp
 var state : String = 'cooldown'
@@ -21,13 +21,17 @@ func _ready():
 	animation_player = $AnimationPlayer
 	animation_player.play(state)
 	
+	for _state in STATES:
+		speeds[_state] = _bpm_to_coefficient(bpms[_state])
+		
+	_set_animation_speed()
+	
 
 # Function called after animation player stopped playing
 func _on_state_change() -> void:
 	# Change the current state
 	state = STATES[(STATES.find(state) + 1) % 2]
-	animation_player.speed_scale = speeds[state]
-	animation_player.play(state)
+	_set_animation_speed()
 	
 	# Emit new sygnals
 	if state == 'gain':
@@ -37,11 +41,18 @@ func _on_state_change() -> void:
 		heartbeat_cooldown.emit()
 
 
-func change_animation_duration(animation_name : String, new_time : float):
-	if animation_name not in STATES:
-		return false
+func change_bpm(state : String, new_bpm : float):
+	if state not in STATES:
+		return
 		
-	var original_length : float = speeds[animation_name]
-	var desired_speed : float = original_length / new_time
+	bpms[state] = new_bpm
+	speeds[state] = _bpm_to_coefficient(new_bpm)
+
+
+func _bpm_to_coefficient(bpm : float):
+	return bpm / 60
 	
-	speeds[animation_name] = desired_speed
+
+func _set_animation_speed():
+	animation_player.speed_scale = speeds[state]
+	animation_player.play(state)

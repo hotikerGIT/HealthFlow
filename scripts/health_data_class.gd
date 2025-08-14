@@ -13,6 +13,8 @@ var hbp_flow : int
 var health_ratio : float = 1
 var hbp_ratio : float = 0
 
+signal death
+
 
 func _init(new_max_health : int, new_max_hbp : int, new_hbp_flow : int = -1) -> void:
 	max_health = new_max_health
@@ -29,6 +31,9 @@ func _init(new_max_health : int, new_max_hbp : int, new_hbp_flow : int = -1) -> 
 	
 func calculate_total_health():
 	total_health = current_health + current_hbp
+	
+	if total_health == 0:
+		death.emit()
 	
 	
 func set_current_hbp(new_value : int):
@@ -65,6 +70,12 @@ func take_damage(damage):
 	damage -= tmp
 	set_current_health(current_health - damage)
 	
+	
+func heal(healing : int):
+	var overflowing_healing : int = healing - (max_health - current_health)
+	set_current_health(current_health + healing)
+	set_current_hbp(current_hbp + overflowing_healing)
+
 
 func deplete_hbp():
 	set_current_hbp(current_hbp - hbp_flow)
